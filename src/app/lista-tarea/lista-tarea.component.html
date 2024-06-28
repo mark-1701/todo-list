@@ -1,0 +1,39 @@
+<div class="card">
+  <h1>Listado de Tareas</h1>
+  <section>
+    <app-agregar-tarea [agregarTareasRecibidas]="listTask"></app-agregar-tarea>
+  </section>
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Tarea</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (task of listTask; track $index) {
+        <tr>
+          <td>
+            {{ counter + $index }}
+          </td>
+          <td [class.completada]="completedTasks[$index]">
+            <span>{{ task }}</span>
+          </td>
+          <td>
+            <button class="table-btn" (click)="changeState($index)">Completada</button>
+          </td>
+          <td>
+            <app-eliminar-tarea
+              [listTask]="listTask"
+              [index]="$index"
+            ></app-eliminar-tarea>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
